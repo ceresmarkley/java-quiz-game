@@ -65,21 +65,35 @@ function questionClick(event) {
     return;
   }
 
+  // get user choice value
+  var userChoice = buttonEl.value;
+
   // check if user guessed wrong
-  if () {
-
-
+  if (userChoice !== currentQuestion.answer) {
 
     // penalize time
-    
-  
-   
+    time -= 10;
 
     // display new time on page
-   
+    timerEl.textContent = time;
 
-  // flash right/wrong feedback on page for half a second
- 
+    // flash wrong feedback on page for half a second
+    feedbackEl.textContent = "Wrong!";
+    feedbackEl.style.color = "red";
+    setTimeout(function() {
+        feedbackEl.textContent = "";
+    }, 500);
+
+  } else {
+
+    // flash right feedback on page for half a second
+    feedbackEl.textContent = "Correct!";
+    feedbackEl.style.color = "red";
+    setTimeout(function() {
+        feedbackEl.textContent = "";
+    }, 500);
+
+  }
 
   // move to next question
   
