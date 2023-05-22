@@ -6,7 +6,7 @@ var timerId;
 
 // variables to reference DOM elements
 var questionsEl = document.getElementById('questions');
-var timerEl = document.getElementById('timer');
+var timerEl = document.getElementById('time');
 var choicesEl = document.getElementById('choices');
 var submitBtn = document.getElementById('submit');
 var startBtn = document.getElementById('start');
@@ -15,22 +15,25 @@ var feedbackEl = document.getElementById('feedback');
 
 
 function startQuiz() {
-  // hide start screen
-  var startScreenEl = document.getElementById('start-screen');
-  startScreenEl.classList.add('hidden');
+    startBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        // hide start screen
+        var startScreenEl = document.getElementById('start-screen');
+        startScreenEl.classList.add('hidden');
 
-  // un-hide questions section
-  var questionsEl = document.getElementById("questions");
-  questionsEl.classList.remove("hidden");
+        // un-hide questions section
+        var questionsEl = document.getElementById("questions");
+        questionsEl.classList.remove("hidden");
 
-  // start timer
-  timerId = setInterval(clockTick, 1000);
+        // start timer
+        timerId = setInterval(clockTick, 1000);
 
-  // show starting time
-  var timerEl = document.getElementById("timer");
-  timerEl.textContent = timer;
+        // show starting time
+        timerEl.textContent = time;
+    
+    getQuestion();
 
-  getQuestion();
+});
 }
 
 function getQuestion() {
@@ -107,8 +110,7 @@ function questionClick(event) {
     //if it did ???
     clearInterval(timerId);
 
-    var resultsEL = document.getElementById("results");
-    resultsEL.textContent = " You answered " + (questions.length - currentQuestionIndex) + "questions correctly out of " + questions.length;
+    //var resultsEL = document.getElementById("results"); (might not need)
 
   } else {
     
@@ -158,7 +160,7 @@ initialsEl.addEventListener("submit", function(event) {
     }
  // get saved scores from localstorage, or if not any, set to empty array
     
-    var highscores = JSON.parse(localStorage.getItem("")) /* what would go inside the PARSE??*/ || [];
+    var highscores = JSON.parse(localStorage.getItem("highscores")) /* what would go inside the PARSE??*/ || [];
 
     // format new score object for current user
     var newScore = {
