@@ -150,7 +150,7 @@ initialsEl.addEventListener("submit", function(event) {
     }
  // get saved scores from localstorage, or if not any, set to empty array
     
-    var highscores = JSON.parse() /* what would go inside the PARSE??*/ || [];
+    var highscores = JSON.parse(localStorage.getItem("")) /* what would go inside the PARSE??*/ || [];
 
     // format new score object for current user
     var newScore = {
@@ -160,7 +160,7 @@ initialsEl.addEventListener("submit", function(event) {
 
     // save to localstorage
     highscores.push(newScore);
-    window.localStorage.setItem('highscores', JSON.stringify(/* What would we put inside STRINGIFY? */));
+    window.localStorage.setItem('highscores', JSON.stringify(highscores));
 
     // redirect to next page
     window.location.href = '';
