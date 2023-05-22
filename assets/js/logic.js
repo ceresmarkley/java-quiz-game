@@ -96,6 +96,7 @@ function questionClick(event) {
   }
 
   // move to next question
+  currentQuestionIndex++;
   
 
   // check if we've run out of questions or if time ran out?
@@ -126,7 +127,7 @@ function quizEnd() {
 function clockTick() {
   // update time
   // decrement the variable we are using to track time
-  timerEl.textContent = ; // update out time
+  timerEl.textContent = time; // update out time
 
   // check if user ran out of time
   if (time <= 0) {
@@ -136,15 +137,20 @@ function clockTick() {
 
 function saveHighscore() {
   // get value of input box
-  var initials = initialsEl.value.trim();
+  localStorage.setItem("initials", JSON.stringify(initialsEl));
+}
+
+initialsEl.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var initials = initialsEl.value.trim();
 
   // make sure value wasn't empty
-  if () {
-
-    // get saved scores from localstorage, or if not any, set to empty array
+    if ( initials === "") {
+        return;
+    }
+ // get saved scores from localstorage, or if not any, set to empty array
     
-    var highscores =
-      JSON.parse() /* what would go inside the PARSE??*/ || [];
+    var highscores = JSON.parse() /* what would go inside the PARSE??*/ || [];
 
     // format new score object for current user
     var newScore = {
@@ -158,8 +164,8 @@ function saveHighscore() {
 
     // redirect to next page
     window.location.href = '';
-  }
-}
+});
+
 
 function checkForEnter(event) {
   // "13" represents the enter key
