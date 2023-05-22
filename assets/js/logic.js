@@ -68,13 +68,15 @@ function questionClick(event) {
   // if the clicked element is not a choice button, do nothing.
   if (!buttonEl.matches('.choice')) {
     return;
+  } else {
+
   }
 
   // get user choice value
   var userChoice = buttonEl.value;
 
   // check if user guessed wrong
-  if (userChoice !== currentQuestion.answer) {
+  if (userChoice !== questionsEl.answer) {
 
     // penalize time
     time -= 10;
