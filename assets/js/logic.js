@@ -100,13 +100,18 @@ function questionClick(event) {
   
 
   // check if we've run out of questions or if time ran out?
-  if () {
+  if ( currentQuestionIndex === questions.length ||  time === 0) {
 
     //if it did ???
+    clearInterval(timerId);
+
+    var resultsEL = document.getElementById("results");
+    resultsEL.textContent = " You answered " + (questions.length - currentQuestionIndex) + "questions correctly out of " + questions.length;
 
   } else {
     
     // if it didnt??
+    getQuestion();
   }
 }
 
@@ -185,4 +190,3 @@ choicesEl.onclick = questionClick;
 
 initialsEl.onkeyup = checkForEnter;
 
-}
