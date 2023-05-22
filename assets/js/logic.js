@@ -19,11 +19,11 @@ function startQuiz() {
         event.preventDefault();
         // hide start screen
         var startScreenEl = document.getElementById('start-screen');
-        startScreenEl.classList.add('hidden');
+        startScreenEl.setAttribute("class", "hide");
 
         // un-hide questions section
         var questionsEl = document.getElementById("questions");
-        questionsEl.classList.remove("hidden");
+        questionsEl.removeAttribute("class", "hide");
 
         // start timer
         timerId = setInterval(clockTick, 1000);
@@ -41,8 +41,8 @@ function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
 
   // update title with current question
-  var titleEl = document.getElementById('title');
-  titleEl.textContent = currentQuestion.question; //think dot notation
+  var titleEl = document.getElementById('question-title');
+  titleEl.textContent = currentQuestion.title; //think dot notation
 
   // clear out any old question choices
   choicesEl.innerHTML = '';
@@ -108,7 +108,8 @@ function questionClick(event) {
   if ( currentQuestionIndex === questions.length ||  time === 0) {
 
     //if it did ???
-    clearInterval(timerId);
+    clearTimeout(timerId);
+    quizEnd();
 
     //var resultsEL = document.getElementById("results"); (might not need)
 
@@ -123,8 +124,8 @@ function quizEnd() {
   // stop timer
  
   // show end screen
-  var endScreenEl = document.getElementById('');
-  endScreenEl.removeAttribute('class');
+  var endScreenEl = document.getElementById('end-screen');
+  endScreenEl.removeAttribute('class', "hide");
 
   // show final score
   var finalScoreEl = document.getElementById('');
