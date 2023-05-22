@@ -126,6 +126,7 @@ function quizEnd() {
   // stop timer
  
   // show end screen
+  questionsEl.setAttribute("class", "hide")
   var endScreenEl = document.getElementById('end-screen');
   endScreenEl.removeAttribute('class', "hide");
 
