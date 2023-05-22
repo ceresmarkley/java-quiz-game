@@ -16,17 +16,19 @@ var feedbackEl = document.getElementById('feedback');
 
 function startQuiz() {
   // hide start screen
-  var startScreenEl = document.getElementById('');
-  startScreenEl.setAttribute('class', '');
+  var startScreenEl = document.getElementById('start-screen');
+  startScreenEl.classList.add('hidden');
 
   // un-hide questions section
-  questionsEl.removeAttribute('');
+  var questionsEl = document.getElementById("questions");
+  questionsEl.classList.remove("hidden");
 
   // start timer
   timerId = setInterval(clockTick, 1000);
 
   // show starting time
-  timerEl.textContent = time;
+  var timerEl = document.getElementById("timer");
+  timerEl.textContent = timer;
 
   getQuestion();
 }
@@ -46,14 +48,14 @@ function getQuestion() {
   for (var i = 0; i < currentQuestion.choices.length; i++) {
     // create new button for each choice
     var choice = currentQuestion.choices[i];
-    var choiceNode = document.createElement('');
+    var choiceNode = document.createElement('button');
     choiceNode.setAttribute('class', 'choice');
     choiceNode.setAttribute('value', choice);
 
     choiceNode.textContent = i + 1 + '. ' + choice;
 
     // display on the page
-    choicesEl.appendChild();
+    choicesEl.appendChild(choiceNode);
   }
 }
 
@@ -132,6 +134,7 @@ function quizEnd() {
 function clockTick() {
   // update time
   // decrement the variable we are using to track time
+  time -= 1;
   timerEl.textContent = time; // update out time
 
   // check if user ran out of time
