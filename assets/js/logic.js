@@ -130,7 +130,7 @@ function quizEnd() {
   endScreenEl.removeAttribute('class', "hide");
 
   // show final score
-  var finalScoreEl = document.getElementById('');
+  var finalScoreEl = document.getElementById('final-score');
   finalScoreEl.textContent = time;
 
   // hide questions section
