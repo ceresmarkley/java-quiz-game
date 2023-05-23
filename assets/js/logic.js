@@ -68,15 +68,13 @@ function questionClick(event) {
   // if the clicked element is not a choice button, do nothing.
   if (!buttonEl.matches('.choice')) {
     return;
-  } else {
-
   }
 
   // get user choice value
   var userChoice = buttonEl.value;
 
   // check if user guessed wrong
-  if (userChoice !== questionsEl.answer) {
+  if (userChoice !== questions[currentQuestionIndex].answer) {
 
     // penalize time
     time -= 10;
@@ -95,10 +93,12 @@ function questionClick(event) {
 
     // flash right feedback on page for half a second
     feedbackEl.textContent = "Correct!";
-    feedbackEl.style.color = "red";
+    feedbackEl.style.color = "Green";
     setTimeout(function() {
         feedbackEl.textContent = "";
     }, 500);
+
+    
 
   }
 
@@ -113,10 +113,7 @@ function questionClick(event) {
     clearTimeout(timerId);
     quizEnd();
 
-    //var resultsEL = document.getElementById("results"); (might not need)
-
   } else {
-    
     // if it didnt??
     getQuestion();
   }
