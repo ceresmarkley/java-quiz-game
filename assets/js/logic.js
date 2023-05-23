@@ -92,6 +92,10 @@ function questionClick(event) {
         feedbackEl.textContent = "";
     }, 500);
 
+    //play sound file
+    var audio = new Audio("assets/sounds/incorrect.wav");
+    audio.play();
+
   } else {
 
     // flash right feedback on page for half a second
@@ -100,6 +104,10 @@ function questionClick(event) {
     setTimeout(function() {
         feedbackEl.textContent = "";
     }, 500);
+
+    //play sound file
+    var audio = new Audio("assets/sounds/correct.wav");
+    audio.play();
 
     
 
