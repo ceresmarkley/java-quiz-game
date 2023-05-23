@@ -1,29 +1,29 @@
 // list of all questions, choices, and answers
 var questions = [
     {
-      title: 'Test Question 1',
-      choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-      answer: 'placeholder 1',
+      title: 'DOM stands for what?',
+      choices: ['Digital Optimized Module', 'Document Object Model', 'Document Obtainer Model', 'Data Option Management'],
+      answer: 'Document Object Model',
     },
     {
-        title: 'Test Question 2',
-        choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-        answer: 'placeholder 2',
+        title: 'What method could you use to change the class name of a document object?',
+        choices: ['changeClass', 'classMethod', 'changeMethod', 'setAttribute()'],
+        answer: 'setAttribute()',
     },
     {
-        title: 'Test Question 3',
-        choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-        answer: 'placeholder 3',
+        title: 'What allows a user to create a variable and store multiple values to it at the same time?',
+        choices: ['multi-variable', 'variable application', 'An array', 'variable(s)'],
+        answer: 'An array',
     },
     {
-        title: 'Test Question 4',
-        choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4'],
-        answer: 'placeholder 4',
+        title: 'What should string values be enclosed in when they are being assigned variables?',
+        choices: ['square brackets', 'quotes', 'curly brackets', 'parantheses'],
+        answer: 'quotes',
     },
     {
-        title: 'Test Question 5',
-        choices: ['placeholder 1', 'placeholder 2', 'placeholder 3', 'placeholder 4', 'placeholder 5'],
-        answer: 'placeholder 5',
+        title: 'After setting and creating a function, what do you need your code to do?',
+        choices: ['call it', 'store it', 'organize it', 'bop it'],
+        answer: 'call it',
     },
     
   

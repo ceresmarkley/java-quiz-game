@@ -30,9 +30,6 @@ function startQuiz() {
 
         // start timer
         timerId = setInterval(clockTick, 1000);
-
-        // show starting time
-        timerEl.textContent = time;
     
     getQuestion();
 
@@ -150,6 +147,7 @@ function clockTick() {
     // if timer reaches 0, stop it
     if (time === 0) {
       clearInterval(timerId);
+      timerEl.setAttribute("class", "hide");
   
       // show timer is over message
       feedbackEl.textContent = "Time is over!";
