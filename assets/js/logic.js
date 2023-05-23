@@ -135,47 +135,73 @@ function quizEnd() {
 }
 
 function clockTick() {
-  // update time
-  // decrement the variable we are using to track time
-  time -= 1;
-  timerEl.textContent = time; // update out time
 
-  // check if user ran out of time
-  if (time <= 0) {
-    quizEnd();
-  }
-}
-
-function saveHighscore() {
-  // get value of input box
-  localStorage.setItem("initials", JSON.stringify(initialsEl));
-}
-
-initialsEl.addEventListener("submit", function(event) {
-    event.preventDefault();
-    var initials = initialsEl.value.trim();
-
-  // make sure value wasn't empty
-    if ( initials === "") {
-        return;
+    // if timer reaches 0, stop it
+    if (time === 0) {
+      clearInterval(timerId);
+  
+      // show timer is over message
+      feedbackEl.textContent = "Time is over!";
+      feedbackEl.style.color = "red";
+  
+      // disable all buttons
+      choicesEl.querySelectorAll('.choice').forEach(button => button.disabled = true);
+  
+      // show end screen
+      questionsEl.setAttribute("class", "hide")
+      var endScreenEl = document.getElementById('end-screen');
+      endScreenEl.removeAttribute('class', "hide");
+  
+      // show final score
+      var finalScoreEl = document.getElementById('final-score');
+      finalScoreEl.textContent = time;
+    } else {
+  
+      // update timer display
+      timerEl.textContent = time;
+  
+      // decrement timer
+      time--;
     }
- // get saved scores from localstorage, or if not any, set to empty array
-    
-    var highscores = JSON.parse(localStorage.getItem("highscores")) /* what would go inside the PARSE??*/ || [];
+  }
 
+  function saveHighscore() {
+
+    // get the user's final score
+    var finalScore = document.getElementById('final-score').textContent;
+  
+    // get value of input box
+    var initials = initialsEl.value.trim();
+  
+    // make sure value wasn't empty
+    if ( initials === "") {
+      return;
+    }
+  
+    // get saved scores from localstorage, or if not any, set to empty array
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+  
     // format new score object for current user
     var newScore = {
-      score: time,
+      score: finalScore,
       initials: initials,
     };
-
+  
     // save to localstorage
     highscores.push(newScore);
-    window.localStorage.setItem('highscores', JSON.stringify(highscores));
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+  
+    // sort the list by score in descending order
+    highscores.sort(function(a, b) {
+      return b.score - a.score;
+    });
+  
+    // limit the list to the top 10 scores
+    highscores = highscores.slice(0, 10);
 
     // redirect to next page
     window.location.href = '';
-});
+};
 
 
 function checkForEnter(event) {
