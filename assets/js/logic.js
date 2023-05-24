@@ -115,7 +115,7 @@ function questionClick(event) {
   
 
   // check if we've run out of questions or if time ran out?
-  if ( currentQuestionIndex === questions.length ||  time === 0) {
+  if ( currentQuestionIndex === questions.length ||  time <= 0) {
 
     //if it did ???
     clearTimeout(timerId);
@@ -129,9 +129,10 @@ function questionClick(event) {
 
 function quizEnd() {
   // stop timer
+  if (time <= 0);
+  clearInterval(timerId);
  
   // show end screen
-  questionsEl.setAttribute("class", "hide")
   var endScreenEl = document.getElementById('end-screen');
   endScreenEl.removeAttribute('class', "hide");
 
@@ -140,12 +141,13 @@ function quizEnd() {
   finalScoreEl.textContent = time;
 
   // hide questions section
+  questionsEl.setAttribute("class", "hide")
 }
 
 function clockTick() {
 
     // if timer reaches 0, stop it
-    if (time === 0) {
+    if (time <= 0) {
       clearInterval(timerId);
       timerEl.setAttribute("class", "hide");
   
