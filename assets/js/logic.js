@@ -77,7 +77,7 @@ function questionClick(event) {
   if (userChoice !== questions[currentQuestionIndex].answer) {
 
     // penalize time
-    time -= 10;
+    time -= 8;
 
     // display new time on page
     timerEl.textContent = time;
@@ -118,7 +118,6 @@ function questionClick(event) {
   if ( currentQuestionIndex === questions.length ||  time <= 0) {
 
     //if it did ???
-    clearTimeout(timerId);
     quizEnd();
 
   } else {
@@ -129,7 +128,6 @@ function questionClick(event) {
 
 function quizEnd() {
   // stop timer
-  if (time <= 0);
   clearInterval(timerId);
  
   // show end screen
@@ -152,7 +150,7 @@ function clockTick() {
       timerEl.setAttribute("class", "hide");
   
       // show timer is over message
-      feedbackEl.textContent = "Time is over!";
+      feedbackEl.textContent = "You're out of time!";
       feedbackEl.style.color = "red";
   
       // disable all buttons
@@ -166,6 +164,8 @@ function clockTick() {
       // show final score
       var finalScoreEl = document.getElementById('final-score');
       finalScoreEl.textContent = time;
+
+      timerEl.textContent = finalScoreEl;
     } else {
   
       // update timer display
