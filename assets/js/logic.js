@@ -17,9 +17,9 @@ var startScreenEl = document.getElementById('start-screen');
 startScreenEl.querySelector('p').textContent = "This is a Javascript Quiz Module designed to test your Java wits! The timer is set to 60 seconds! You have 5 questions to answer! If you choose wrong you will lose time, so choose wisely!";
 
 
+
 function startQuiz() {
-    startBtn.addEventListener("click", function(event) {
-        event.preventDefault();
+ 
         // hide start screen
         var startScreenEl = document.getElementById('start-screen');
         startScreenEl.setAttribute("class", "hide");
@@ -33,8 +33,8 @@ function startQuiz() {
     
     getQuestion();
 
-});
 }
+
 
 function getQuestion() {
   // get current question object from array

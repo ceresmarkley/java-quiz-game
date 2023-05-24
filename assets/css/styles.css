@@ -29,6 +29,10 @@ body {
   button:hover {
     background-color: #8570a5;
   }
+
+  button#start:hover {
+    background-color: #8570a5;
+  }
   
   .choices button {
     display: block;
