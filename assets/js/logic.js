@@ -118,6 +118,7 @@ function questionClick(event) {
   if ( currentQuestionIndex === questions.length ||  time <= 0) {
 
     //if it did ???
+    clearInterval(timerId);
     quizEnd();
 
   } else {
