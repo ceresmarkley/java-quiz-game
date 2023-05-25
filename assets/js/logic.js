@@ -1,4 +1,4 @@
-// variables to keep track of quiz state
+// variable to keep track of question index
 var currentQuestionIndex = 0;
 //time left value here of 60 seconds
 var time = 60;
@@ -20,11 +20,11 @@ startScreenEl.querySelector('p').textContent = "This is a Javascript Quiz Module
 
 function startQuiz() {
  
-        // hide start screen
+        // hide the start screen
         var startScreenEl = document.getElementById('start-screen');
         startScreenEl.setAttribute("class", "hide");
 
-        // un-hide questions section
+        // un-hide the questions section
         var questionsEl = document.getElementById("questions");
         questionsEl.removeAttribute("class", "hide");
 
@@ -37,17 +37,17 @@ function startQuiz() {
 
 
 function getQuestion() {
-  // get current question object from array
+  // variable to select current question for user from array
   var currentQuestion = questions[currentQuestionIndex];
 
-  // update title with current question
+  // update title display with current question
   var titleEl = document.getElementById('question-title');
   titleEl.textContent = currentQuestion.title; //think dot notation
 
-  // clear out any old question choices
+  // clear out old question choices
   choicesEl.innerHTML = '';
 
-  // loop over choices
+  // for loop over choices
   for (var i = 0; i < currentQuestion.choices.length; i++) {
     // create new button for each choice
     var choice = currentQuestion.choices[i];
@@ -57,7 +57,7 @@ function getQuestion() {
 
     choiceNode.textContent = i + 1 + '. ' + choice;
 
-    // display on the page
+    // display to user on the page
     choicesEl.appendChild(choiceNode);
   }
 }
@@ -65,18 +65,18 @@ function getQuestion() {
 function questionClick(event) {
   var buttonEl = event.target;
 
-  // if the clicked element is not a choice button, do nothing.
+  // if user does not click an element choice button, do nothing.
   if (!buttonEl.matches('.choice')) {
     return;
   }
 
-  // get user choice value
+  // get user's choice value
   var userChoice = buttonEl.value;
 
-  // check if user guessed wrong
+  // check if user chose the wrong answer
   if (userChoice !== questions[currentQuestionIndex].answer) {
 
-    // penalize time
+    // penalty time for wrong answer
     time -= 8;
 
     // display new time on page
@@ -89,7 +89,7 @@ function questionClick(event) {
         feedbackEl.textContent = "";
     }, 500);
 
-    //play sound file
+    //play incorrect sound file
     var audio = new Audio("assets/sounds/incorrect.wav");
     audio.play();
 
@@ -102,7 +102,7 @@ function questionClick(event) {
         feedbackEl.textContent = "";
     }, 500);
 
-    //play sound file
+    //play correct sound file
     var audio = new Audio("assets/sounds/correct.wav");
     audio.play();
 
@@ -110,7 +110,7 @@ function questionClick(event) {
 
   }
 
-  // move to next question
+  // bring user to next question to next question
   currentQuestionIndex++;
   
 
@@ -131,15 +131,15 @@ function quizEnd() {
   // stop timer
   clearInterval(timerId);
  
-  // show end screen
+  // display the end screen
   var endScreenEl = document.getElementById('end-screen');
   endScreenEl.removeAttribute('class', "hide");
 
-  // show final score
+  // show users final score
   var finalScoreEl = document.getElementById('final-score');
   finalScoreEl.textContent = time;
 
-  // hide questions section
+  // hide the questions section
   questionsEl.setAttribute("class", "hide")
 }
 
@@ -154,15 +154,15 @@ function clockTick() {
       feedbackEl.textContent = "You're out of time!";
       feedbackEl.style.color = "red";
   
-      // disable all buttons
+      // disable all choice buttons
       choicesEl.querySelectorAll('.choice').forEach(button => button.disabled = true);
   
-      // show end screen
+      // display the end screen
       questionsEl.setAttribute("class", "hide")
       var endScreenEl = document.getElementById('end-screen');
       endScreenEl.removeAttribute('class', "hide");
   
-      // show final score
+      // display the final score
       var finalScoreEl = document.getElementById('final-score');
       finalScoreEl.textContent = time;
 
@@ -185,7 +185,7 @@ function clockTick() {
     // get value of input box
     var initials = initialsEl.value.trim();
   
-    // make sure value wasn't empty
+    // check if user input value was empty
     if ( initials === "") {
       return;
     }
@@ -193,7 +193,7 @@ function clockTick() {
     // get saved scores from localstorage, or if not any, set to empty array
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
   
-    // format new score object for current user
+    // format new score object array for current user
     var newScore = {
       score: finalScore,
       initials: initials,
@@ -217,20 +217,20 @@ function clockTick() {
 
 
 function checkForEnter(event) {
-  // "13" represents the enter key
   if (event.key === 'Enter') {
     saveHighscore();
   }
 }
 
-// user clicks button to submit initials
+// user clicks button to submit their initials
 submitBtn.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
 
-// user clicks on element containing choices
+// user clicks on element containing answer choices
 choicesEl.onclick = questionClick;
 
+// checks for user input on key up of enter button
 initialsEl.onkeyup = checkForEnter;
 
